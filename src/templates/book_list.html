@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>本一覧</title>
+    </head>
+    <body>
+        <h1>本一覧</h1>
+        <ol>
+            {% for book in books %}
+            <li>タイトル: {{ book.title }} (貸出状況: {{ book.status }})</li>
+            {% endfor %}
+        </ol>
+    </body>
+</html>
