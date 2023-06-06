@@ -1,5 +1,5 @@
 from . import BookRepository
-from domain.library import Library
+from domain.entities import Library
 
 
 class LibraryRepository:

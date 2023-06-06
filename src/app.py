@@ -1,6 +1,8 @@
-from infrastructure.repository.book import BookRepository
-from infrastructure.repository.library import LibraryRepository
-from application.usecase import BookListUseCase
+from domain.repositories import (
+    BookRepository,
+    LibraryRepository
+)
+from application.library.usecase import BookListUseCase
 from infrastructure.adapter import MySQLDatabase
 
 from flask import Flask, render_template

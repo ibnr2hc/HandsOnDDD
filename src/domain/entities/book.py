@@ -1,5 +1,4 @@
-from .title import Title
-from .status import Status
+from domain.value_object import Title, Status
 
 from typing import List
 

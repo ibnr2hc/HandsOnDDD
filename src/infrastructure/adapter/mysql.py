@@ -10,7 +10,7 @@ class MySQLDatabase:
         self.user = user
         self.password = password
         self.dbname = dbname
-        self._max_retry_count = 5
+        self._max_retry_count = 10
         self._retry_interval = 5  # sec
 
     def connect(self):

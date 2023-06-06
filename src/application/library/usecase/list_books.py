@@ -1,4 +1,4 @@
-from domain.book import Book
+from domain.entities.book import Book
 
 from typing import List
 

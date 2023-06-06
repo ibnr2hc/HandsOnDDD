@@ -1,5 +1,4 @@
-from .email import Email
-from .name import Name
+from domain.value_object import Email, Name
 
 class User:
     def __init__(self, id: int, name: Name, email: Email):
