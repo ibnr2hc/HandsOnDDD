@@ -27,12 +27,12 @@ CREATE TABLE loan_history (
 
 -- テストデータの挿入
 INSERT INTO users (id, name, email) VALUES 
-(1, 'ダニエルクレイグ', 'daniel@example.com'),
-(2, 'マッツミケルセン', 'mads@example.com');
+(1, 'Daniel Craig', 'daniel@example.com'),
+(2, 'Mads Mikkelsen', 'mads@example.com');
 
 INSERT INTO books (id, title, status) VALUES 
-(1, '進撃の巨人', 'available'),
-(2, 'ジョジョの奇妙な冒険', 'borrowed');
+(1, 'Attack on Titan', 'available'),
+(2, 'JoJo', 'borrowed');
 
 INSERT INTO loan_history (id, user_id, book_id, borrow_date, due_date, return_date) VALUES 
 (1, 1, 2, '2023-06-01', '2023-06-08', NULL);

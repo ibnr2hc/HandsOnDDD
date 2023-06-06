@@ -1,5 +1,3 @@
-from entities.book import Book
-
 from typing import List
 
 class Library:

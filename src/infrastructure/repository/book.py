@@ -1,4 +1,4 @@
-from entities.book import Book, Title, Status, BookStatus
+from domain.book import Book, Title, Status, BookStatus
 
 from typing import List
 

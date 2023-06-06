@@ -1,7 +1,7 @@
-from repositories.book import BookRepository
-from repositories.library import LibraryRepository
-from usecases import BookListUseCase
-from infrastructures import MySQLDatabase
+from infrastructure.repository.book import BookRepository
+from infrastructure.repository.library import LibraryRepository
+from application.usecase import BookListUseCase
+from infrastructure.adapter import MySQLDatabase
 
 from flask import Flask, render_template
 app = Flask(__name__)
