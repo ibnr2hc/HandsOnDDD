@@ -1,9 +1,13 @@
-class Name:
-    def __init__(self, name: str):
-        self.validate(name)
-        self.value = name
+from pydantic import BaseModel, validator
 
-    def validate(self, name: str):
-        # 文字数が50文字を超える場合はFalseを返す
-        if len(name) > 50:
+
+class Name(BaseModel):
+    value: str
+
+    @validator("value")
+    def check_length(cls, v):
+        """ 文字数が50文字を超える場合は例外を送出する
+        """
+        if len(v) > 50:
             raise ValueError("文字数が50文字を超えています")
+        return v

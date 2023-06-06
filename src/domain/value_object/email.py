@@ -1,10 +1,13 @@
-class Email:
-    def __init__(self, email: str):
-        self.validate(email)
-        self.value = email
+from pydantic import BaseModel, validator
 
-    def validate(self, email: str):
-        # "@"が含まれていない場合はFalseを返す
-        if "@" not in email:
-            raise ValueError("Email is invalid")
-        self.value = email
+
+class Email(BaseModel):
+    value: str
+
+    @validator("value")
+    def check_format(cls, v):
+        """ @が含まれていない場合は例外を送出する
+        """
+        if "@" not in v:
+            raise ValueError("メールアドレスのフォーマットが正しくありません")
+        return v

@@ -1,14 +1,14 @@
 from domain.value_object import Title, Status
 
+from pydantic import BaseModel
 from typing import List
 
 
-class Book:
-    def __init__(self, id: int, title: Title, status: Status, borrowing_history: List['BorrowingHistory'] = []):
-        self.id = id
-        self.title = title
-        self.status = status
-        self.borrowing_history = []
+class Book(BaseModel):
+    id: int
+    title: Title
+    status: Status
+    borrowing_history: List['BorrowingHistory'] = []
 
     def is_borrowed(self):
         """ 貸出中であればTrueを返す

@@ -34,6 +34,6 @@ class BookRepository:
             (Book): 本エンティティ
         """
         # TODO: タイトルなどのvalidate結果に応じて例外処理をする
-        title = Title(db_book["title"])
-        status = Status(BookStatus(db_book["status"]))
+        title = Title(value=db_book["title"])
+        status = Status(value=BookStatus(db_book["status"]))
         return Book(id=db_book["id"], title=title, status=status)
