@@ -1,5 +1,5 @@
-from . import BookRepository
-from domain.entities import Library
+from domain.book_aggregate.book_repository import BookRepository
+from domain.library_aggregate.library import Library
 
 
 class LibraryRepository:

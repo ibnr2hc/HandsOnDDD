@@ -1,5 +1,6 @@
-from domain.entities import Book
-from domain.value_object import Title, Status, BookStatus
+from domain.book_aggregate.book import Book
+from domain.book_aggregate.title import Title
+from domain.book_aggregate.status import Status, BookStatus
 
 from typing import List
 

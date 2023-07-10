@@ -1,4 +1,5 @@
-from domain.value_object import Title, Status
+from domain.book_aggregate.title import Title
+from domain.book_aggregate.status import Status
 
 from pydantic import BaseModel
 from typing import List

@@ -1,8 +1,7 @@
-from domain.repositories import (
-    BookRepository,
-    LibraryRepository
-)
-from application.library.usecase import BookListUseCase
+from domain.book_aggregate.book_repository import BookRepository
+from domain.library_aggregate.library_repository import LibraryRepository
+from application.library.usecase.list_books import BookListUseCase
+# TODO: MySQLという知識をこの層に流出させないようにする
 from infrastructure.adapter import MySQLDatabase
 
 from flask import Flask, render_template
