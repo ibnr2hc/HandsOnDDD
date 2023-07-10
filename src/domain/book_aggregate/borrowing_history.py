@@ -1,4 +1,6 @@
-class BorrowingHistory:
+from domain.base.entity import Entity
+
+class BorrowingHistory(Entity):
     def __init__(self, id: int, user: 'User', book: 'Book', borrow_date: str, due_date: str, return_date: str):
         self.id = id
         self.user = user

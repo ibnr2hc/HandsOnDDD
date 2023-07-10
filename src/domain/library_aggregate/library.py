@@ -1,15 +1,19 @@
+from domain.base.entity import Entity
+from domain.book_aggregate.book import Book
+from domain.user_aggregate.user import User
+
 from typing import List
 
-class Library:
-    def __init__(self, books: List['Book'] = []):
-        self.books = books
+
+class Library(Entity):
+    books: List[Book]
 
     def list_books(self):
         """ 本の一覧を返す
         """
         return self.books
 
-    def get_book_detail(self, book_id: int) -> 'Book':
+    def get_book_detail(self, book_id: int) -> Book:
         """ 本の詳細を返す
 
         Args:
@@ -22,7 +26,7 @@ class Library:
             if book.id == book_id:
                 return book
 
-    def borrow_book(self, book_id: int, user: 'User'):
+    def borrow_book(self, book_id: int, user: User):
         """ 本を借りる
 
         Args:
@@ -32,7 +36,7 @@ class Library:
         book_to_borrow = self.get_book_detail(book_id)
         book_to_borrow.borrow_book(user)
 
-    def return_book(self, book_id: int, user: 'User'):
+    def return_book(self, book_id: int, user: User):
         """ 本を返す
 
         Args:

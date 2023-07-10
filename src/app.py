@@ -11,7 +11,7 @@ app = Flask(__name__)
 db_session = MySQLDatabase(host="db", user="root", password="root", dbname="library").connect()
 # Repository
 book_repository = BookRepository(db_cursor=db_session.cursor(dictionary=True, buffered=True))
-library_repository = LibraryRepository(book_repository)
+library_repository = LibraryRepository(book_repository=book_repository)
 # Usecase
 book_list_usecase = BookListUseCase(library_repository)
 

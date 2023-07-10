@@ -1,8 +1,9 @@
 from domain.book_aggregate.book_repository import BookRepository
 from domain.library_aggregate.library import Library
+from domain.base.repository import Repository
 
 
-class LibraryRepository:
+class LibraryRepository(Repository):
     def __init__(self, book_repository: BookRepository):
         self.book_repository = book_repository
 

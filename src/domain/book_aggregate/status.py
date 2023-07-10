@@ -1,4 +1,5 @@
-from pydantic import BaseModel, validator
+from pydantic import validator
+from domain.base.value_object import ValueObject
 
 from enum import Enum
 
@@ -7,7 +8,7 @@ class BookStatus(Enum):
     AVAILABLE = "available"
     BORROWED = "borrowed"
 
-class Status(BaseModel):
+class Status(ValueObject):
     value: BookStatus
 
     @validator("value")

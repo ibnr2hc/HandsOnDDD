@@ -1,8 +1,8 @@
 from domain.user_aggregate.email import Email
 from domain.user_aggregate.name import Name
+from domain.base.entity import Entity
 
-class User:
-    def __init__(self, id: int, name: Name, email: Email):
-        self.id = id
-        self.name = name
-        self.email = email
+class User(Entity):
+    id: int
+    name: Name
+    email: Email
