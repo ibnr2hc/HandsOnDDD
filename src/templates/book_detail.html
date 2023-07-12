@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>本の詳細</title>
+    </head>
+    <body>
+        <h1>本の詳細</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div>
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST">
+            <p>
+                <label for="title">タイトル：</label>
+                <input id="title" name="title" value="{{ book.title }}" />
+            </p>
+            <p>
+                <label for="status">貸し出し状況：</label>
+                <input id="status" name="status" value="{{ book.status }}" disabled />
+            </p>
+            <button type="submit">更新</button>
+        </form>
+    </body>
+</html>

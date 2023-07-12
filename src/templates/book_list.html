@@ -8,7 +8,8 @@
         <h1>本一覧</h1>
         <ol>
             {% for book in books %}
-            <li>タイトル: {{ book.title }} (貸出状況: {{ book.status }})</li>
+            <li>
+                <a href="books/{{book.id}}">タイトル: {{ book.title }} (貸出状況: {{ book.status }})</a></li>
             {% endfor %}
         </ol>
     </body>
