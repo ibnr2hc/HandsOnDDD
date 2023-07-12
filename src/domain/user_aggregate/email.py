@@ -1,7 +1,9 @@
-from pydantic import BaseModel, validator
+from domain.base.value_object import ValueObject
+
+from pydantic import validator
 
 
-class Email(BaseModel):
+class Email(ValueObject):
     value: str
 
     @validator("value")

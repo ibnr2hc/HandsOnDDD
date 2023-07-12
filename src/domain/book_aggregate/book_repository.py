@@ -1,10 +1,12 @@
-from domain.entities import Book
-from domain.value_object import Title, Status, BookStatus
+from domain.book_aggregate.book import Book
+from domain.book_aggregate.title import Title
+from domain.book_aggregate.status import Status, BookStatus
+from domain.base.repository import Repository
 
 from typing import List
 
 
-class BookRepository:
+class BookRepository(Repository):
     def __init__(self, db_cursor):
         self.db_cursor = db_cursor
 

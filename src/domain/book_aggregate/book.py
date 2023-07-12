@@ -1,10 +1,11 @@
-from domain.value_object import Title, Status
+from domain.book_aggregate.title import Title
+from domain.book_aggregate.status import Status
+from domain.base.entity import Entity
 
-from pydantic import BaseModel
 from typing import List
 
 
-class Book(BaseModel):
+class Book(Entity):
     id: int
     title: Title
     status: Status

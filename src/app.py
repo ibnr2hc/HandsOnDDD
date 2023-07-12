@@ -1,8 +1,7 @@
-from domain.repositories import (
-    BookRepository,
-    LibraryRepository
-)
-from application.library.usecase import BookListUseCase
+from domain.book_aggregate.book_repository import BookRepository
+from domain.library_aggregate.library_repository import LibraryRepository
+from application.library.usecase.list_books import BookListUseCase
+# TODO: MySQLという知識をこの層に流出させないようにする
 from infrastructure.adapter import MySQLDatabase
 
 from flask import Flask, render_template
@@ -12,7 +11,7 @@ app = Flask(__name__)
 db_session = MySQLDatabase(host="db", user="root", password="root", dbname="library").connect()
 # Repository
 book_repository = BookRepository(db_cursor=db_session.cursor(dictionary=True, buffered=True))
-library_repository = LibraryRepository(book_repository)
+library_repository = LibraryRepository(book_repository=book_repository)
 # Usecase
 book_list_usecase = BookListUseCase(library_repository)
 

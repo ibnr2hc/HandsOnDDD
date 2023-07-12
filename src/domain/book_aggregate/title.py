@@ -1,6 +1,7 @@
-from pydantic import BaseModel, validator
+from pydantic import validator
+from domain.base.value_object import ValueObject
 
-class Title(BaseModel):
+class Title(ValueObject):
     value: str
 
     @validator("value")
