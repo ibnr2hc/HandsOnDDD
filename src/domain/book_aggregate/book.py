@@ -11,6 +11,14 @@ class Book(Entity):
     status: Status
     borrowing_history: List['BorrowingHistory'] = []
 
+    def change_title(self, title: Title):
+        """ 本のタイトルを変更する
+
+        Args:
+            title (Title): 本のタイトル
+        """
+        self.title = title
+
     def is_borrowed(self):
         """ 貸出中であればTrueを返す
         """
