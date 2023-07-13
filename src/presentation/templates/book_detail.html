@@ -6,6 +6,7 @@
     </head>
     <body>
         <h1>本の詳細</h1>
+        <a href="{{ url_for('book_list') }}">一覧へ</a>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div>
