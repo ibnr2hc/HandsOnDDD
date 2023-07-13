@@ -15,6 +15,6 @@ class BookDetailUseCase:
             (List[BookDTO]): 本のDTOのリスト
         """
         # 本の詳細を取得する
-        book = self.book_repository.get_book_by_id(book_id=book_id)
+        book = self.book_repository.find_by_id(book_id=book_id)
         # 本の一覧をBookDTOのリストに変換する
         return BookDTO.from_entity(book=book)

@@ -13,5 +13,5 @@ class LibraryRepository(Repository):
         Returns:
             (Library): Libraryエンティティ
         """
-        books = self.book_repository.get_all_books()
+        books = self.book_repository.find_all()
         return Library(books=books)

@@ -10,7 +10,7 @@ class BookRepository(Repository):
     def __init__(self, db_cursor):
         self.db_cursor = db_cursor
 
-    def update_book(self, book: Book):
+    def store(self, book: Book):
         """ 本を更新する
 
         Args:
@@ -21,7 +21,7 @@ class BookRepository(Repository):
         # TODO: Entityの属性が増えた場合にも対応しやすい作りにする
         self.db_cursor.execute("UPDATE books SET title = %s WHERE id = %s", (book.title.value, book.id))
 
-    def get_book_by_id(self, book_id) -> Book:
+    def find_by_id(self, book_id) -> Book:
         """ すべての書籍を返す
 
         Args:
@@ -37,7 +37,7 @@ class BookRepository(Repository):
         # DBのレコードからドメインエンティティのBookを作成
         return self._db_to_entity(db_book)
 
-    def get_all_books(self) -> List[Book]:
+    def find_all(self) -> List[Book]:
         """ すべての書籍を返す
 
         Returns:

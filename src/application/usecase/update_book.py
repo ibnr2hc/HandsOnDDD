@@ -19,12 +19,12 @@ class UpdateBookUseCase:
             BookDTO: 更新後の本のDTO
         """
         # 本の詳細を取得する
-        book = self.book_repository.get_book_by_id(book_id=book_id)
+        book = self.book_repository.find_by_id(book_id=book_id)
         new_title = Title(value=title)
         book.change_title(title=new_title)
 
         # 本の更新を永続化する
-        self.book_repository.update_book(book=book)
+        self.book_repository.store(book=book)
 
         # 本の一覧をBookDTOのリストに変換する
         return BookDTO.from_entity(book=book)
