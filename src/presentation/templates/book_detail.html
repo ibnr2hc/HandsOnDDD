@@ -14,16 +14,16 @@
             </div>
         {% endif %}
         {% endwith %}
-        <form method="POST">
-            <p>
-                <label for="title">タイトル：</label>
-                <input id="title" name="title" value="{{ book.title }}" />
-            </p>
-            <p>
-                <label for="status">貸し出し状況：</label>
-                <input id="status" name="status" value="{{ book.status }}" disabled />
-            </p>
-            <button type="submit">更新</button>
+        <p>
+            <label for="title">タイトル：</label>
+            <input id="title" name="title" value="{{ book.title }}" />
+        </p>
+        <p>
+            <label for="status">貸し出し状況：</label>
+            <input id="status" name="status" value="{{ book.status }}" disabled />
+        </p>
+        <form action="{{ url_for('borrow_book', book_id=book.id) }}" method="POST">
+            <button type="submit">貸出をする</button>
         </form>
     </body>
 </html>
