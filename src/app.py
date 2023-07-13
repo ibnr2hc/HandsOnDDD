@@ -1,13 +1,14 @@
 from domain.book_aggregate.book_repository import BookRepository
 from domain.library_aggregate.library_repository import LibraryRepository
 from application.usecase.list_books import BookListUseCase
-from application.usecase.detail_book import BookDetailUseCase
+from application.usecase.book_detail import BookDetailUseCase
+from application.usecase.book_detail_dto import BookDetailDTO
 from application.usecase.update_book import UpdateBookUseCase
 # TODO: MySQLという知識をこの層に流出させないようにする
 from infrastructure.adapter import MySQLDatabase
 
 from flask import Flask, render_template, request, redirect, url_for, flash
-app = Flask(__name__)
+app = Flask(__name__, template_folder="presentation/templates")
 app.config['SECRET_KEY'] = 'aiueo'
 
 # リポジトリとユースケースを初期化
@@ -42,7 +43,8 @@ def book_detail(book_id):
         return redirect(url_for('book_detail', book_id=book_id))
 
     # GETの場合は詳細を表示する
-    book_dto = book_detail_usecase.execute(book_id=book_id)
+    book_entity = book_detail_usecase.execute(book_id=book_id)
+    book_dto = BookDetailDTO.entity_to_dto(book_entity)
     return render_template("book_detail.html", book=book_dto)
 
 
