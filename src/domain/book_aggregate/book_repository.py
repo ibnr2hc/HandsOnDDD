@@ -17,19 +17,21 @@ class BookRepository(Repository):
             book (Book): 更新する本
         """
         # DBの書籍レコードを更新
-        # TODO: レコードが存在しない場合のエラー処理
         # TODO: Entityの属性が増えた場合にも対応しやすい作りにする
-        self.db_cursor.execute("UPDATE books SET title = %s WHERE id = %s", (book.title.value, book.id))
+        if book.id is None:  # 新規作成の場合
+            self.db_cursor.execute("INSERT INTO books (title, status) VALUES (%s, %s)", (book.title.value, book.status.value.value))
+        else:  # 更新の場合
+            self.db_cursor.execute("UPDATE books SET title = %s, status = %s WHERE id = %s", (book.title.value, book.status.value.value, book.id))
 
     def find_by_id(self, book_id) -> Book:
-        """ すべての書籍を返す
+        """ IDに一致する本を返す
 
         Args:
             book_id (int): 本のID
         Returns:
             (List[Book]): 本のリスト
         """
-        # DBからすべての書籍レコードを取得
+        # DBからIDに一致する書籍レコードを取得
         # TODO: レコードが存在しない場合のエラー処理
         self.db_cursor.execute("SELECT * FROM books WHERE id = %s", (book_id,))
         db_book = self.db_cursor.fetchone()
@@ -46,9 +48,6 @@ class BookRepository(Repository):
         # DBからすべての書籍レコードを取得
         self.db_cursor.execute("SELECT * FROM books")
         db_books = self.db_cursor.fetchall()
-
-        for book in db_books:
-            print(book, flush=True)
 
         # DBのレコードからドメインエンティティのBookを作成
         books = [self._db_to_entity(db_book) for db_book in db_books]
