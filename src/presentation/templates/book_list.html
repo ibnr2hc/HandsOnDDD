@@ -9,7 +9,8 @@
         <ol>
             {% for book in books.books %}
             <li>
-                <a href="books/{{book.id}}">タイトル: {{ book.title }} (貸出状況: {{ book.status }})</a></li>
+                <a href="books/{{book.id}}">タイトル: {{ book.title }} (貸出状況: {{ book.status }})</a>
+            </li>
             {% endfor %}
         </ol>
     </body>
