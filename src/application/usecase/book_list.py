@@ -1,14 +1,12 @@
 from domain.book_aggregate.book import Book
-from .book_dto import BookDTO
-
-from typing import List
+from application.usecase.book_list_dto import BookListDTO
 
 
 class BookListUseCase:
     def __init__(self, library_repository):
         self.library_repository = library_repository
 
-    def execute(self) -> List[BookDTO]:
+    def execute(self) -> BookListDTO:
         """ 本の一覧を返す
 
         Returns:
@@ -17,4 +15,4 @@ class BookListUseCase:
         # 本の一覧を取得する
         library = self.library_repository.get_library()
         # 本の一覧をBookDTOのリストに変換する
-        return BookDTO.from_entities(books=library.list_books())
+        return library.list_books()

@@ -1,5 +1,4 @@
 from domain.book_aggregate.book import Book
-from .book_dto import BookDTO
 
 from typing import List
 

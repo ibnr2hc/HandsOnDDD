@@ -1,6 +1,7 @@
 from domain.book_aggregate.book_repository import BookRepository
 from domain.library_aggregate.library_repository import LibraryRepository
-from application.usecase.list_books import BookListUseCase
+from application.usecase.book_list import BookListUseCase
+from application.usecase.book_list_dto import BookListDTO
 from application.usecase.book_detail import BookDetailUseCase
 from application.usecase.book_detail_dto import BookDetailDTO
 from application.usecase.update_book import UpdateBookUseCase
@@ -21,15 +22,14 @@ book_list_usecase = BookListUseCase(library_repository)
 book_detail_usecase = BookDetailUseCase(book_repository)
 update_book_usecase = UpdateBookUseCase(book_repository)
 
-# TODO: 本貸し出し中に何かしらの値を変更できないようにするといい勉強になりそう
-
 
 @app.route('/books', methods=['GET'])
 def book_list():
     """ 本の一覧を表示する
     """
-    book_dto_list = book_list_usecase.execute()
-    return render_template("book_list.html", books=book_dto_list)
+    library_entity = book_list_usecase.execute()
+    library_dto = BookListDTO.from_entity(library_entity)
+    return render_template("book_list.html", books=library_dto)
 
 @app.route('/books/<int:book_id>', methods=['GET', 'POST'])
 def book_detail(book_id):
@@ -38,7 +38,7 @@ def book_detail(book_id):
     # POSTの場合は更新処理を行う
     if request.method == 'POST':
         # TODO: パラメーターの渡し方が汚いのでリファクタリングする
-        book_dto = update_book_usecase.execute(book_id=book_id, title=request.form["title"])
+        update_book_usecase.execute(book_id=book_id, title=request.form["title"])
         flash('更新が完了しました')
         return redirect(url_for('book_detail', book_id=book_id))
 
